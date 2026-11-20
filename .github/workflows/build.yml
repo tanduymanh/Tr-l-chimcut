@@ -13,14 +13,13 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-      - uses: android-actions/setup-android@v3
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: 8.7
       - name: Build
         working-directory: src
-        run: gradle assembleDebug --no-daemon
+        run: gradle assembleDebug --no-daemon --stacktrace
       - uses: actions/upload-artifact@v4
         with:
-          name: LinhNhi-APK
+          name: ChimCut-APK
           path: src/app/build/outputs/apk/debug/*.apk
