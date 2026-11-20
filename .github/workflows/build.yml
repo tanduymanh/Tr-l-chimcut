@@ -7,8 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Giai nen project.zip
-        run: unzip -o project.zip -d src
+        with:
+          fetch-depth: 0
+      - name: Giai nen file zip moi nhat
+        run: |
+          ZIP="$(git -c core.quotepath=false log -1 --format= --name-only -- '*.zip' | head -1)"
+          echo "Dung file: $ZIP"
+          unzip -o "$ZIP" -d src
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
